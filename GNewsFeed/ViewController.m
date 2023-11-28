@@ -9,8 +9,10 @@
 #import "FeedListController.h"
 #import "WebserverCommunicator.h"
 #import "FetchGoogleNews.h"
+#import "FeedArticles.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -19,18 +21,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self fetchGoogleNews];
-    [self displayNewsFeed];
 }
 
--(void)displayNewsFeed {
+-(void)displayNewsFeed:(FeedArticles *)articles {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FeedListController *feedListVC = [sb instantiateViewControllerWithIdentifier:@"FeedList"];
+    feedListVC.feedArticles = articles;
     [self.navigationController pushViewController:feedListVC animated:true];
 }
 
 -(void)fetchGoogleNews {
     FetchGoogleNews *googleNews = [[FetchGoogleNews alloc] init];
-    [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-10-28" sortBy:@"popularity"];
+    [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-10-28" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.activityIndicator stopAnimating];
+            [self.activityIndicator removeFromSuperview];
+            self.activityIndicator = nil;
+            
+            if (error ==nil & articles!= nil & articles.articles.count > 0) {
+                [self displayNewsFeed:articles];
+            }
+        });
+    }];
 }
 
 @end

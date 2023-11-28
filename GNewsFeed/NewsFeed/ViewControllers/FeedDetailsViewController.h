@@ -6,11 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_ASSUME_NONNULL_BEGIN
+#import "FeedData.h"
 
 @interface FeedDetailsViewController : UIViewController
-
++(FeedDetailsViewController*)instantiateVc:(FeedData *)feedData;
 @end
-
-NS_ASSUME_NONNULL_END

@@ -2,7 +2,7 @@
 //  FeedArticles.h
 //  GNewsFeed
 //
-//  Created by Sagar Mane on 28/11/23.
+//  Created by Ganesh Amrule on 28/11/23.
 //
 
 #import <Foundation/Foundation.h>

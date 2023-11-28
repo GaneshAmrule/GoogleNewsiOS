@@ -6,6 +6,7 @@
 //
 
 #import "NewsFeedCell.h"
+#import "ImageDownloader.h"
 
 @interface NewsFeedCell()
 
@@ -13,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *feedDate;
 @property (weak, nonatomic) IBOutlet UILabel *feedTitle;
 @property (weak, nonatomic) IBOutlet UILabel *feedDescription;
+
+@property (strong, nonatomic) FeedData *feedData;
 
 @end
 
@@ -22,14 +25,18 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 }
--(void)initWithDetails:(NSString*)imagePath
-          title:(NSString*)title
-    description:(NSString*)description
-                  date:(NSString*)date {
-    self.feedTitle.text = title;
-    self.feedTitle.text = title;
-    self.feedDescription.text = description;
-    self.feedDate.text = date;
+
+-(void)initWithFeedData:(FeedData*)feedData {
+    self.feedData = feedData;
+    self.feedTitle.text = feedData.title;
+    self.feedDescription.text = feedData.feedDescription;
+    self.feedDate.text = feedData.publishedAt;
+    ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
+    __weak NewsFeedCell *weakSelf = self;
+
+    [imageDownloader downloadImage:feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
+        weakSelf.feedImage.image = [UIImage imageWithData:imageData];
+    }];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -42,7 +49,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
 }
 
 @end

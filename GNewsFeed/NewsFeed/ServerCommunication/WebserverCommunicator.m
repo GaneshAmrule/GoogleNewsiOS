@@ -9,11 +9,12 @@
 
 #define kgoogleNewsAPIHost @"https://newsapi.org/v2/everything"
 
-
 @implementation WebserverCommunicator
 
--(void)sendAsyncRequest: (NSString*)requestType params:(NSDictionary *)params {
-    // Send a synchronous request
+-(void)sendAsyncRequest: (NSString*)requestType
+                 params:(NSDictionary *)params
+            sucessBlock:(successBlock)successBlock
+              failBlock:(failureBlock)failureBlock {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     NSString *urlString = [self createURLString:params];
@@ -24,11 +25,22 @@
     [request addValue:@"text/plain" forHTTPHeaderField:@"Accept"];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
     [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-        NSData * responseData = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-        NSLog(@"requestReply: %@", jsonDict);
+        if (error != nil) {
+            failureBlock(false, error);
+        } else {
+            NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSData * responseData = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
+            if (jsonDict!= nil) {
+                successBlock(true, jsonDict);
+            } else {
+                failureBlock(false, error);
+            }
+            NSLog(@"requestReply: %@", jsonDict);
+        }
+        
     }] resume];
 }
 

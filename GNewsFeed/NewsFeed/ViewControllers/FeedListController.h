@@ -6,11 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedArticles.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface FeedListController : UITableViewController
-
+@property (nonatomic, strong) FeedArticles *feedArticles;
 @end
-
-NS_ASSUME_NONNULL_END

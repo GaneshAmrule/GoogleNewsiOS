@@ -6,12 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedData.h"
 
 @interface NewsFeedCell : UITableViewCell
 
--(void)initWithDetails:(NSString*)imagePath
-          title:(NSString*)title
-    description:(NSString*)description
-                  date:(NSString*)date;
+-(void)initWithFeedData:(FeedData*)feedData ;
 
 @end

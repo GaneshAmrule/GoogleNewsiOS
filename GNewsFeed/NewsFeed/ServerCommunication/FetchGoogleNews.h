@@ -6,14 +6,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FeedArticles.h"
 
 extern NSString *const queryKey;
 extern NSString *const fromKey;
 extern NSString *const sortByKey;
 extern NSString *const apiKey;
 
+typedef void (^ completionBlock)(NSError*, FeedArticles*);
+
 @interface FetchGoogleNews : NSObject
 
--(void)fetchGoogleNews:(NSString *)query fromDate:(NSString*)dateString sortBy:(NSString*)sortBy;
+-(void)fetchGoogleNews:(NSString *)query
+              fromDate:(NSString*)dateString
+                sortBy:(NSString*)sortBy
+       completionBlock:(completionBlock)completionBlock;
 
 @end

@@ -20,6 +20,7 @@
 		6F43D91F2B15900000049BAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F43D91D2B15900000049BAC /* LaunchScreen.storyboard */; };
 		6F43D9222B15900000049BAC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D9212B15900000049BAC /* main.m */; };
 		6F43D92A2B15905500049BAC /* FeedListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D9292B15905500049BAC /* FeedListController.m */; };
+		6F46BA602B16405E0082A2EB /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F46BA5F2B16405E0082A2EB /* ImageDownloader.m */; };
 		6FB222A72B15C68300C8BB37 /* NewsFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB222A62B15C68300C8BB37 /* NewsFeedCell.m */; };
 		6FB222AA2B15DE8800C8BB37 /* FeedDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB222A92B15DE8800C8BB37 /* FeedDetailsViewController.m */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,8 @@
 		6F43D9212B15900000049BAC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6F43D9282B15905500049BAC /* FeedListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedListController.h; sourceTree = "<group>"; };
 		6F43D9292B15905500049BAC /* FeedListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedListController.m; sourceTree = "<group>"; };
+		6F46BA5E2B16405E0082A2EB /* ImageDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		6F46BA5F2B16405E0082A2EB /* ImageDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		6FB222A52B15C68300C8BB37 /* NewsFeedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsFeedCell.h; sourceTree = "<group>"; };
 		6FB222A62B15C68300C8BB37 /* NewsFeedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsFeedCell.m; sourceTree = "<group>"; };
 		6FB222A82B15DE8800C8BB37 /* FeedDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedDetailsViewController.h; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		6F3A89362B1602420051ED5E /* ServerCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				6F46BA5D2B16403E0082A2EB /* ImageDownloader */,
 				6F3A89372B1604A30051ED5E /* WebserverCommunicator.h */,
 				6F3A89382B1604A30051ED5E /* WebserverCommunicator.m */,
 				6F3A893A2B160FA80051ED5E /* FetchGoogleNews.h */,
@@ -110,6 +114,15 @@
 				6F43D9212B15900000049BAC /* main.m */,
 			);
 			path = GNewsFeed;
+			sourceTree = "<group>";
+		};
+		6F46BA5D2B16403E0082A2EB /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				6F46BA5E2B16405E0082A2EB /* ImageDownloader.h */,
+				6F46BA5F2B16405E0082A2EB /* ImageDownloader.m */,
+			);
+			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
 		6FB222AB2B15E48600C8BB37 /* NewsFeed */ = {
@@ -231,6 +244,7 @@
 				6FB222AA2B15DE8800C8BB37 /* FeedDetailsViewController.m in Sources */,
 				6F3A893F2B1625AC0051ED5E /* FeedSource.m in Sources */,
 				6F43D9172B158FF900049BAC /* ViewController.m in Sources */,
+				6F46BA602B16405E0082A2EB /* ImageDownloader.m in Sources */,
 				6F3A89422B1626520051ED5E /* FeedData.m in Sources */,
 				6F43D92A2B15905500049BAC /* FeedListController.m in Sources */,
 				6FB222A72B15C68300C8BB37 /* NewsFeedCell.m in Sources */,

@@ -15,9 +15,25 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ru2-xo-I4R">
+                                <rect key="frame" x="145" y="372" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eb7-dM-kyl"/>
+                                    <constraint firstAttribute="height" constant="100" id="fp5-aX-eS5"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="Ru2-xo-I4R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0kR-Kf-bhN"/>
+                            <constraint firstItem="Ru2-xo-I4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q95-aT-29Z"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BrG-aC-TpF"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Ru2-xo-I4R" id="RCZ-MI-uw0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,6 +178,10 @@
                             <constraint firstItem="IZT-Jm-vzi" firstAttribute="trailing" secondItem="24H-yA-PXe" secondAttribute="trailing" constant="16" id="yxO-5d-Xbf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newsContents" destination="24H-yA-PXe" id="dxh-C5-Z5d"/>
+                        <outlet property="newsImage" destination="omJ-IE-Ojj" id="HP2-Oe-3Xd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWd-Uc-eCD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
