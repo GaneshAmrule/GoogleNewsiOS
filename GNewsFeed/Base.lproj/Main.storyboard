@@ -140,12 +140,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" placeholderIntrinsicWidth="340" placeholderIntrinsicHeight="180" image="googleNewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="omJ-IE-Ojj">
-                                <rect key="frame" x="16" y="79" width="358" height="598"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" placeholderIntrinsicWidth="340" placeholderIntrinsicHeight="180" image="googleNewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="omJ-IE-Ojj">
+                                <rect key="frame" x="16" y="63" width="358" height="180"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="21" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24H-yA-PXe">
-                                <rect key="frame" x="16" y="693" width="358" height="21"/>
+                                <rect key="frame" x="16" y="259" width="358" height="21"/>
                                 <string key="text">Sanjay Kumar Verma, India's High Commissioner to Canada, stated that the Indian government is collaborating with an American inquiry related to an alleged foiled assassination attempt, rather than Canada's investigation into the June killing of Khalistani terrorist Hardeep Singh Nijjar in Surrey, British Columbia due disparities in the information shared between the two nations during their respective investigations.</string>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -153,11 +153,14 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yaJ-d3-cnT">
                                 <rect key="frame" x="16" y="730" width="358" height="40"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vcy-jl-2WQ"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Open news"/>
+                                <buttonConfiguration key="configuration" style="plain" title="show detail news" cornerStyle="dynamic">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="openNews:" destination="oYs-0Y-kIw" eventType="touchUpInside" id="5oU-bw-5gn"/>
                                 </connections>
@@ -166,8 +169,8 @@
                         <viewLayoutGuide key="safeArea" id="IZT-Jm-vzi"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="omJ-IE-Ojj" firstAttribute="top" secondItem="IZT-Jm-vzi" secondAttribute="top" constant="32" id="1hU-Db-1xW"/>
-                            <constraint firstItem="yaJ-d3-cnT" firstAttribute="top" secondItem="24H-yA-PXe" secondAttribute="bottom" constant="16" id="442-Ao-nbt"/>
+                            <constraint firstItem="omJ-IE-Ojj" firstAttribute="top" secondItem="IZT-Jm-vzi" secondAttribute="top" constant="16" id="1hU-Db-1xW"/>
+                            <constraint firstItem="yaJ-d3-cnT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="24H-yA-PXe" secondAttribute="bottom" constant="16" id="442-Ao-nbt"/>
                             <constraint firstItem="24H-yA-PXe" firstAttribute="leading" secondItem="IZT-Jm-vzi" secondAttribute="leading" constant="16" id="FxG-p2-qjw"/>
                             <constraint firstItem="IZT-Jm-vzi" firstAttribute="trailing" secondItem="omJ-IE-Ojj" secondAttribute="trailing" constant="16" id="Iac-xe-7UE"/>
                             <constraint firstItem="IZT-Jm-vzi" firstAttribute="bottom" secondItem="yaJ-d3-cnT" secondAttribute="bottom" constant="40" id="MFW-wp-fuw"/>
@@ -190,6 +193,9 @@
     </scenes>
     <resources>
         <image name="googleNewsIcon" width="512" height="512"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
