@@ -27,4 +27,9 @@
     self.navigationItem.hidesBackButton =true;
 }
 
+- (IBAction)openNews:(id)sender {
+    NSURL *newsURL = [NSURL URLWithString:@"https://www.google.com"];
+    [[UIApplication sharedApplication] openURL:newsURL options:@{} completionHandler:nil];
+}
+
 @end

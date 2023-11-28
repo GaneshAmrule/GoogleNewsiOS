@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F3A89392B1604A30051ED5E /* WebserverCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A89382B1604A30051ED5E /* WebserverCommunicator.m */; };
+		6F3A893C2B160FA80051ED5E /* FetchGoogleNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A893B2B160FA80051ED5E /* FetchGoogleNews.m */; };
+		6F3A893F2B1625AC0051ED5E /* FeedSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A893E2B1625AC0051ED5E /* FeedSource.m */; };
+		6F3A89422B1626520051ED5E /* FeedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A89412B1626520051ED5E /* FeedData.m */; };
+		6F3A89452B1626F20051ED5E /* FeedArticles.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A89442B1626F20051ED5E /* FeedArticles.m */; };
 		6F43D9112B158FF900049BAC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D9102B158FF900049BAC /* AppDelegate.m */; };
 		6F43D9142B158FF900049BAC /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D9132B158FF900049BAC /* SceneDelegate.m */; };
 		6F43D9172B158FF900049BAC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F43D9162B158FF900049BAC /* ViewController.m */; };
@@ -20,6 +25,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F3A89372B1604A30051ED5E /* WebserverCommunicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebserverCommunicator.h; sourceTree = "<group>"; };
+		6F3A89382B1604A30051ED5E /* WebserverCommunicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebserverCommunicator.m; sourceTree = "<group>"; };
+		6F3A893A2B160FA80051ED5E /* FetchGoogleNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FetchGoogleNews.h; sourceTree = "<group>"; };
+		6F3A893B2B160FA80051ED5E /* FetchGoogleNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FetchGoogleNews.m; sourceTree = "<group>"; };
+		6F3A893D2B1625AC0051ED5E /* FeedSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedSource.h; sourceTree = "<group>"; };
+		6F3A893E2B1625AC0051ED5E /* FeedSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedSource.m; sourceTree = "<group>"; };
+		6F3A89402B1626520051ED5E /* FeedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedData.h; sourceTree = "<group>"; };
+		6F3A89412B1626520051ED5E /* FeedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedData.m; sourceTree = "<group>"; };
+		6F3A89432B1626F10051ED5E /* FeedArticles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedArticles.h; sourceTree = "<group>"; };
+		6F3A89442B1626F20051ED5E /* FeedArticles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedArticles.m; sourceTree = "<group>"; };
 		6F43D90C2B158FF900049BAC /* GNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F43D90F2B158FF900049BAC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6F43D9102B158FF900049BAC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +66,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F3A89362B1602420051ED5E /* ServerCommunication */ = {
+			isa = PBXGroup;
+			children = (
+				6F3A89372B1604A30051ED5E /* WebserverCommunicator.h */,
+				6F3A89382B1604A30051ED5E /* WebserverCommunicator.m */,
+				6F3A893A2B160FA80051ED5E /* FetchGoogleNews.h */,
+				6F3A893B2B160FA80051ED5E /* FetchGoogleNews.m */,
+			);
+			path = ServerCommunication;
+			sourceTree = "<group>";
+		};
 		6F43D9032B158FF800049BAC = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +115,7 @@
 		6FB222AB2B15E48600C8BB37 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
+				6F3A89362B1602420051ED5E /* ServerCommunication */,
 				6FB222AE2B15E4B200C8BB37 /* Model */,
 				6FB222AD2B15E4AB00C8BB37 /* View */,
 				6FB222AC2B15E49A00C8BB37 /* ViewControllers */,
@@ -119,6 +146,12 @@
 		6FB222AE2B15E4B200C8BB37 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6F3A893D2B1625AC0051ED5E /* FeedSource.h */,
+				6F3A893E2B1625AC0051ED5E /* FeedSource.m */,
+				6F3A89402B1626520051ED5E /* FeedData.h */,
+				6F3A89412B1626520051ED5E /* FeedData.m */,
+				6F3A89432B1626F10051ED5E /* FeedArticles.h */,
+				6F3A89442B1626F20051ED5E /* FeedArticles.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,10 +226,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F3A89452B1626F20051ED5E /* FeedArticles.m in Sources */,
+				6F3A89392B1604A30051ED5E /* WebserverCommunicator.m in Sources */,
 				6FB222AA2B15DE8800C8BB37 /* FeedDetailsViewController.m in Sources */,
+				6F3A893F2B1625AC0051ED5E /* FeedSource.m in Sources */,
 				6F43D9172B158FF900049BAC /* ViewController.m in Sources */,
+				6F3A89422B1626520051ED5E /* FeedData.m in Sources */,
 				6F43D92A2B15905500049BAC /* FeedListController.m in Sources */,
 				6FB222A72B15C68300C8BB37 /* NewsFeedCell.m in Sources */,
+				6F3A893C2B160FA80051ED5E /* FetchGoogleNews.m in Sources */,
 				6F43D9112B158FF900049BAC /* AppDelegate.m in Sources */,
 				6F43D9222B15900000049BAC /* main.m in Sources */,
 				6F43D9142B158FF900049BAC /* SceneDelegate.m in Sources */,

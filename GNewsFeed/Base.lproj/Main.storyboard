@@ -43,6 +43,7 @@
                                             <rect key="frame" x="5" y="5" width="90" height="90"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="4Jr-8L-0HX"/>
+                                                <constraint firstAttribute="height" constant="90" id="Z44-ri-i8a"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHG-HE-pAA">
@@ -69,7 +70,6 @@
                                         <constraint firstItem="c5P-Fv-XHW" firstAttribute="leading" secondItem="qHG-HE-pAA" secondAttribute="trailing" constant="10" id="ONs-O0-7zq"/>
                                         <constraint firstItem="kat-MF-WMo" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="top" constant="5" id="Rfp-oN-tOM"/>
                                         <constraint firstItem="kat-MF-WMo" firstAttribute="leading" secondItem="AcT-gi-26U" secondAttribute="leading" constant="5" id="UEP-M9-Z9M"/>
-                                        <constraint firstAttribute="bottom" secondItem="kat-MF-WMo" secondAttribute="bottom" constant="5" id="bTB-Ra-HN5"/>
                                         <constraint firstItem="c5P-Fv-XHW" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="topMargin" constant="5" id="fo3-pU-M3w"/>
                                         <constraint firstItem="qHG-HE-pAA" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="topMargin" constant="5" id="hpY-gK-VMc"/>
                                         <constraint firstAttribute="trailing" secondItem="0Ml-SV-Plf" secondAttribute="trailing" constant="5" id="lXT-DG-xnw"/>
@@ -141,7 +141,10 @@
                                     <constraint firstAttribute="height" constant="40" id="vcy-jl-2WQ"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Open news"/>
+                                <connections>
+                                    <action selector="openNews:" destination="oYs-0Y-kIw" eventType="touchUpInside" id="5oU-bw-5gn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IZT-Jm-vzi"/>
