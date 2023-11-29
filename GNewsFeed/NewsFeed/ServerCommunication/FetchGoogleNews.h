@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FeedArticles.h"
+#import "FeedError.h"
 
 extern NSString *const queryKey;
 extern NSString *const fromKey;

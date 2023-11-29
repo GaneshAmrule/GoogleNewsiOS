@@ -18,14 +18,18 @@ NSString *const sortByKey = @"sortBy";
 NSString *const apiKey = @"apiKey";
 NSString *const getReq = @"GET";
 
-
+@interface FetchGoogleNews()
+{
+    completionBlock completionHandler;
+}
+@end
 @implementation FetchGoogleNews
 
 -(void)fetchGoogleNews:(NSString *)query
               fromDate:(NSString*)dateString
                 sortBy:(NSString*)sortBy
        completionBlock:(completionBlock)completionBlock {
-    
+    completionHandler = completionBlock;
     NSDictionary *paramsDictionary = @ {queryKey:query, fromKey: dateString, sortByKey:sortBy, apiKey:kgoogleNewsAPIKey};
     WebserverCommunicator *webserverCom = [[WebserverCommunicator alloc] init];
     [webserverCom sendAsyncRequest:getReq params:paramsDictionary
@@ -44,6 +48,8 @@ NSString *const getReq = @"GET";
     NSMutableArray *articleList = [[NSMutableArray alloc] init];
     NSArray *articlesDict = [jsonDictionary valueForKey:@"articles"];
     if (articlesDict == nil) {
+        FeedError *error = [self parseFeedError:jsonDictionary];
+        completionHandler(error, nil);
         return nil;
     }
     for (NSDictionary *article in articlesDict) {
@@ -66,6 +72,14 @@ NSString *const getReq = @"GET";
     FeedArticles *feedArticles = [[FeedArticles alloc] init];
     feedArticles.articles = articleList;
     return feedArticles;
+}
+
+-(FeedError*)parseFeedError:(NSDictionary *)errorDictionary {
+    FeedError *feedError = [[FeedError alloc] init];
+    feedError.feedErrorCode = [errorDictionary valueForKey:@"code"];
+    feedError.message = [errorDictionary valueForKey:@"message"];
+    feedError.status = [errorDictionary valueForKey:@"status"];
+    return feedError;
 }
 
 @end

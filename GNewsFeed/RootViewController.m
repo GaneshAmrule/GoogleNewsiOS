@@ -25,8 +25,8 @@
 }
 
 -(void)displayNewsFeed:(FeedArticles *)articles {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    FeedListController *feedListVC = [sb instantiateViewControllerWithIdentifier:@"FeedList"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    FeedListController *feedListVC = [storyboard instantiateViewControllerWithIdentifier:@"FeedList"];
     feedListVC.feedArticles = articles;
     [self.navigationController pushViewController:feedListVC animated:true];
 }
@@ -37,17 +37,42 @@
     [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-10-28" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.activityIndicator stopAnimating];
-            [self.activityIndicator removeFromSuperview];
-            self.activityIndicator = nil;
-            [self.fetchNewsLabel removeFromSuperview];
-            self.fetchNewsLabel = nil;
-            
+            [self removeProgressView];
             if (error ==nil & articles!= nil & articles.articles.count > 0) {
                 [self displayNewsFeed:articles];
+            } else {
+                [self displayError:error];
             }
         });
     }];
+}
+
+-(void)removeProgressView {
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+    self.activityIndicator = nil;
+    
+    [self.fetchNewsLabel removeFromSuperview];
+    self.fetchNewsLabel = nil;
+}
+
+-(void)displayError:(NSError*)error {
+    UIAlertController *feedAlertVC = [[UIAlertController alloc] init];
+
+    if ([error isKindOfClass:[FeedError class]]){
+        feedAlertVC.title = [(FeedError*)error feedErrorCode];
+        feedAlertVC.message = [(FeedError*)error message];
+    } else {
+        feedAlertVC.title = [NSString stringWithFormat:@"%ld", (long)[error code]];
+        feedAlertVC.message = [error description];
+    }
+    UIAlertAction* okButton = [UIAlertAction
+                                    actionWithTitle:@"Ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                    }];
+    [feedAlertVC addAction:okButton];
+    [self presentViewController:feedAlertVC animated:true completion:^{}];
 }
 
 @end
