@@ -13,6 +13,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *fetchNewsLabel;
 
 @end
 
@@ -31,6 +32,7 @@
 }
 
 -(void)fetchGoogleNews {
+    [self.activityIndicator startAnimating];
     FetchGoogleNews *googleNews = [[FetchGoogleNews alloc] init];
     [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-10-28" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
         
@@ -38,6 +40,8 @@
             [self.activityIndicator stopAnimating];
             [self.activityIndicator removeFromSuperview];
             self.activityIndicator = nil;
+            [self.fetchNewsLabel removeFromSuperview];
+            self.fetchNewsLabel = nil;
             
             if (error ==nil & articles!= nil & articles.articles.count > 0) {
                 [self displayNewsFeed:articles];

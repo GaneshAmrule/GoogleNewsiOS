@@ -16,23 +16,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ru2-xo-I4R">
-                                <rect key="frame" x="145" y="372" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="eb7-dM-kyl"/>
-                                    <constraint firstAttribute="height" constant="100" id="fp5-aX-eS5"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Getting news..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gG-ch-Ljr">
+                                <rect key="frame" x="127.00000000000001" y="409.33333333333331" width="136.33333333333337" height="25.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Ru2-xo-I4R">
+                                <rect key="frame" x="0.0" y="91" width="390" height="719"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ru2-xo-I4R" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0kR-Kf-bhN"/>
+                            <constraint firstItem="7gG-ch-Ljr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9wf-Vy-ffd"/>
+                            <constraint firstItem="Ru2-xo-I4R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D7m-sZ-5hK"/>
                             <constraint firstItem="Ru2-xo-I4R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Q95-aT-29Z"/>
+                            <constraint firstItem="Ru2-xo-I4R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Tps-kr-osv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ru2-xo-I4R" secondAttribute="trailing" id="eRj-CD-dMb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ru2-xo-I4R" secondAttribute="bottom" id="jqe-Kf-3rD"/>
+                            <constraint firstItem="7gG-ch-Ljr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xP8-Jd-6dj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BrG-aC-TpF"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Ru2-xo-I4R" id="RCZ-MI-uw0"/>
+                        <outlet property="fetchNewsLabel" destination="7gG-ch-Ljr" id="0TD-BQ-oAK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
