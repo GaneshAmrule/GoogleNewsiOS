@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  RootViewController.m
 //  GNewsFeed
 //
 //  Created by Ganesh Amrule on 28/11/23.
 //
 
-#import "ViewController.h"
+#import "RootViewController.h"
 #import "FeedListController.h"
 #import "WebserverCommunicator.h"
 #import "FetchGoogleNews.h"
 #import "FeedArticles.h"
 
-@interface ViewController ()
+@interface RootViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *fetchNewsLabel;
 
 @end
 
-@implementation ViewController
+@implementation RootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
