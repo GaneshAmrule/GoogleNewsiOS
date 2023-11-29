@@ -1,2 +1,2 @@
-# GoogleNewsiOS
-# This project pulls news from google news app and displays.
+# Google news iOS
+# This project pulls news from google news API and displays.
