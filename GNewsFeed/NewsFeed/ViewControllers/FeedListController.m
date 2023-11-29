@@ -19,6 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = true;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
 }
 
 -(void)displayFeedDetails:(FeedData*)feedData {
@@ -52,4 +54,13 @@
     [self displayFeedDetails:feedData];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return UITableViewAutomaticDimension;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return UITableViewAutomaticDimension;
+}
 @end
