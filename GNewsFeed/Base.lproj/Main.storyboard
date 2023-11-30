@@ -52,10 +52,11 @@
         <scene sceneID="FG1-yX-3Xp">
             <objects>
                 <tableViewController storyboardIdentifier="FeedList" id="SKw-Ra-4Ic" customClass="FeedListController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="paS-XM-UH9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="paS-XM-UH9">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" systemColor="labelColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="100" id="FBo-At-E8o" customClass="NewsFeedCell">
                                 <rect key="frame" x="0.0" y="50" width="390" height="100"/>
@@ -64,47 +65,47 @@
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleNewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kat-MF-WMo">
-                                            <rect key="frame" x="5" y="5" width="120" height="120"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleNewsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kat-MF-WMo">
+                                            <rect key="frame" x="8" y="11" width="100" height="100"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="4Jr-8L-0HX"/>
-                                                <constraint firstAttribute="height" constant="120" id="Z44-ri-i8a"/>
+                                                <constraint firstAttribute="width" constant="100" id="FHN-WA-66T"/>
+                                                <constraint firstAttribute="height" constant="100" id="uh3-oF-qR3"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHG-HE-pAA">
-                                            <rect key="frame" x="145" y="16" width="42" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <rect key="frame" x="116" y="8" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="this is description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ml-SV-Plf">
-                                            <rect key="frame" x="145" y="60" width="240" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <rect key="frame" x="116" y="71" width="266" height="21"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" placeholderIntrinsicWidth="42" placeholderIntrinsicHeight="21" text="28th Sept 23" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5P-Fv-XHW">
-                                            <rect key="frame" x="285" y="16" width="80" height="21"/>
+                                            <rect key="frame" x="302" y="10" width="80" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="qxL-05-evM"/>
+                                                <constraint firstAttribute="width" constant="80" id="DMp-j6-6uk"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="0Ml-SV-Plf" secondAttribute="bottom" constant="8" id="1N0-t8-avy"/>
-                                        <constraint firstItem="c5P-Fv-XHW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qHG-HE-pAA" secondAttribute="trailing" constant="10" id="ONs-O0-7zq"/>
-                                        <constraint firstItem="kat-MF-WMo" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="top" constant="5" id="Rfp-oN-tOM"/>
-                                        <constraint firstItem="kat-MF-WMo" firstAttribute="leading" secondItem="AcT-gi-26U" secondAttribute="leading" constant="5" id="UEP-M9-Z9M"/>
-                                        <constraint firstItem="c5P-Fv-XHW" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="topMargin" constant="5" id="fo3-pU-M3w"/>
-                                        <constraint firstItem="qHG-HE-pAA" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="topMargin" constant="5" id="hpY-gK-VMc"/>
-                                        <constraint firstAttribute="trailing" secondItem="0Ml-SV-Plf" secondAttribute="trailing" constant="5" id="lXT-DG-xnw"/>
-                                        <constraint firstItem="0Ml-SV-Plf" firstAttribute="leading" secondItem="kat-MF-WMo" secondAttribute="trailing" constant="20" id="tXm-VB-ep6"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="c5P-Fv-XHW" secondAttribute="trailing" constant="5" id="wFR-7w-Cak"/>
-                                        <constraint firstItem="qHG-HE-pAA" firstAttribute="leading" secondItem="kat-MF-WMo" secondAttribute="trailing" constant="20" id="xdx-Nf-8Id"/>
-                                        <constraint firstItem="0Ml-SV-Plf" firstAttribute="top" secondItem="qHG-HE-pAA" secondAttribute="bottom" constant="8" id="z8u-s5-lbO"/>
+                                        <constraint firstAttribute="bottom" secondItem="0Ml-SV-Plf" secondAttribute="bottom" constant="8" id="94U-1z-kZp"/>
+                                        <constraint firstItem="c5P-Fv-XHW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qHG-HE-pAA" secondAttribute="trailing" constant="10" id="BVZ-PQ-YFq"/>
+                                        <constraint firstItem="c5P-Fv-XHW" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="top" constant="10" id="JRJ-Lz-p12"/>
+                                        <constraint firstItem="0Ml-SV-Plf" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qHG-HE-pAA" secondAttribute="bottom" constant="8" id="PhJ-xa-htJ"/>
+                                        <constraint firstItem="qHG-HE-pAA" firstAttribute="leading" secondItem="kat-MF-WMo" secondAttribute="trailing" constant="8" id="Q68-sH-51B"/>
+                                        <constraint firstItem="0Ml-SV-Plf" firstAttribute="leading" secondItem="kat-MF-WMo" secondAttribute="trailing" constant="8" id="VOW-FZ-N7f"/>
+                                        <constraint firstItem="qHG-HE-pAA" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="top" constant="8" id="bda-AT-54Y"/>
+                                        <constraint firstItem="kat-MF-WMo" firstAttribute="top" secondItem="AcT-gi-26U" secondAttribute="top" constant="11" id="g4M-tj-Lca"/>
+                                        <constraint firstAttribute="trailing" secondItem="0Ml-SV-Plf" secondAttribute="trailing" constant="8" id="iTm-8X-PYy"/>
+                                        <constraint firstAttribute="trailing" secondItem="c5P-Fv-XHW" secondAttribute="trailing" constant="8" id="mSK-99-1q0"/>
+                                        <constraint firstItem="kat-MF-WMo" firstAttribute="leading" secondItem="AcT-gi-26U" secondAttribute="leading" constant="8" id="zHR-LW-7zv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -205,6 +206,9 @@
     </scenes>
     <resources>
         <image name="googleNewsIcon" width="512" height="512"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

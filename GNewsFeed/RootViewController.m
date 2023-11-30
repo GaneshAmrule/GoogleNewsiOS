@@ -34,7 +34,7 @@
 -(void)fetchGoogleNews {
     [self.activityIndicator startAnimating];
     FetchGoogleNews *googleNews = [[FetchGoogleNews alloc] init];
-    [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-10-28" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
+    [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-11-1" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self removeProgressView];
