@@ -9,6 +9,8 @@
 #import "FeedDetailsViewController.h"
 #import "NewsFeedCell.h"
 #import "FeedData.h"
+#import "GoogleNewsManager.h"
+#import "Utility.h"
 
 @interface FeedListController ()
 
@@ -35,7 +37,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.feedArticles.articles count];
+    return [self.feedArticles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -44,13 +46,13 @@
        if (cell == nil) {
            cell = [[NewsFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
        }
-    FeedData *feedData = [self.feedArticles.articles objectAtIndex:indexPath.row];
+    FeedData *feedData = [self.feedArticles objectAtIndex:indexPath.row];
     [cell initWithFeedData:feedData];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedData *feedData = [self.feedArticles.articles objectAtIndex:indexPath.row];
+    FeedData *feedData = [self.feedArticles objectAtIndex:indexPath.row];
     [self displayFeedDetails:feedData];
 }
 
@@ -63,4 +65,54 @@
 
     return UITableViewAutomaticDimension;
 }
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    int height = scrollView.frame.size.height;
+    int contentYOffset = scrollView.contentOffset.y;
+    float distanceFromBottom = scrollView.contentSize.height - contentYOffset;
+
+    if (contentYOffset <= 0) {
+        NSLog(@"You reached top of the table");
+        [self fetchPreviousNews];
+    }
+     if (distanceFromBottom < height) {
+         NSLog(@"You reached end of the table");
+         [self fetchNextNews];
+     }
+}
+
+-(void)fetchNextNews {
+    GoogleNewsManager *newsManager = [GoogleNewsManager sharedInstance];
+    [newsManager fetchNextNewsPage:@"market"
+                          fromDate:@"23-11-1"
+                            sortBy:@"popularity"
+                   completionBlock:^(NSError *error, NSArray *articles, BOOL refresh){
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if (error ==nil & articles!= nil & articles.count > 0) {
+                self.feedArticles = articles;
+                [self.tableView reloadData];
+            } else {
+                [Utility displayError:error onVC:self];
+            }
+        });
+    }];
+}
+
+-(void)fetchPreviousNews {
+    GoogleNewsManager *newsManager = [GoogleNewsManager sharedInstance];
+    [newsManager fetchPrevNewsPage:@"market"
+                          fromDate:@"23-11-1"
+                            sortBy:@"popularity"
+                   completionBlock:^(NSError *error, NSArray *articles, BOOL refresh){
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if (error ==nil & articles!= nil & articles.count > 0) {
+                self.feedArticles = articles;
+                [self.tableView reloadData];
+            } else {
+                [Utility displayError:error onVC:self];
+            }
+        });
+    }];
+}
+
 @end

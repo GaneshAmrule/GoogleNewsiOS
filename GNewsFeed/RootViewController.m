@@ -10,6 +10,8 @@
 #import "WebserverCommunicator.h"
 #import "FetchGoogleNews.h"
 #import "FeedArticles.h"
+#import "GoogleNewsManager.h"
+#import "Utility.h"
 
 @interface RootViewController ()
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
@@ -24,7 +26,7 @@
     [self fetchGoogleNews];
 }
 
--(void)displayNewsFeed:(FeedArticles *)articles {
+-(void)displayNewsFeed:(NSArray *)articles {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     FeedListController *feedListVC = [storyboard instantiateViewControllerWithIdentifier:@"FeedList"];
     feedListVC.feedArticles = articles;
@@ -33,12 +35,15 @@
 
 -(void)fetchGoogleNews {
     [self.activityIndicator startAnimating];
-    FetchGoogleNews *googleNews = [[FetchGoogleNews alloc] init];
-    [googleNews fetchGoogleNews:@"bitcon" fromDate:@"2023-11-1" sortBy:@"popularity" completionBlock:^(NSError *error, FeedArticles *articles){
-        
+    
+    GoogleNewsManager *newsManager = [GoogleNewsManager sharedInstance];
+    [newsManager fetchNextNewsPage:@"market"
+                          fromDate:@"23-11-1"
+                            sortBy:@"popularity"
+                   completionBlock:^(NSError *error, NSArray *articles, BOOL refresh){
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self removeProgressView];
-            if (error ==nil & articles!= nil & articles.articles.count > 0) {
+            if (error ==nil & articles!= nil & articles.count > 0) {
                 [self displayNewsFeed:articles];
             } else {
                 [self displayError:error];
@@ -57,22 +62,7 @@
 }
 
 -(void)displayError:(NSError*)error {
-    UIAlertController *feedAlertVC = [[UIAlertController alloc] init];
-
-    if ([error isKindOfClass:[FeedError class]]){
-        feedAlertVC.title = [(FeedError*)error feedErrorCode];
-        feedAlertVC.message = [(FeedError*)error message];
-    } else {
-        feedAlertVC.title = [NSString stringWithFormat:@"%ld", (long)[error code]];
-        feedAlertVC.message = [error description];
-    }
-    UIAlertAction* okButton = [UIAlertAction
-                                    actionWithTitle:@"Ok"
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action) {
-                                    }];
-    [feedAlertVC addAction:okButton];
-    [self presentViewController:feedAlertVC animated:true completion:^{}];
+    [Utility displayError:error onVC:self];
 }
 
 @end

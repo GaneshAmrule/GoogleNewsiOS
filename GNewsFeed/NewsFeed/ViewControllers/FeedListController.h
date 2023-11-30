@@ -10,5 +10,5 @@
 
 
 @interface FeedListController : UITableViewController
-@property (nonatomic, strong) FeedArticles *feedArticles;
+@property (nonatomic, strong) NSArray *feedArticles;
 @end

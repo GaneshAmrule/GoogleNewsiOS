@@ -13,6 +13,8 @@ extern NSString *const queryKey;
 extern NSString *const fromKey;
 extern NSString *const sortByKey;
 extern NSString *const apiKey;
+extern NSString *const pageNoKey;
+extern NSString *const pageSizeKey;
 
 typedef void (^ completionBlock)(NSError*, FeedArticles*);
 
@@ -21,6 +23,8 @@ typedef void (^ completionBlock)(NSError*, FeedArticles*);
 -(void)fetchGoogleNews:(NSString *)query
               fromDate:(NSString*)dateString
                 sortBy:(NSString*)sortBy
+                pageNo:(NSInteger)pageNo
+              pageSize:(NSInteger)pageSize
        completionBlock:(completionBlock)completionBlock;
 
 @end

@@ -17,6 +17,8 @@ NSString *const fromKey = @"from";
 NSString *const sortByKey = @"sortBy";
 NSString *const apiKey = @"apiKey";
 NSString *const getReq = @"GET";
+NSString *const pageNoKey = @"page";
+NSString *const pageSizeKey = @"pageSize";
 
 @interface FetchGoogleNews()
 {
@@ -28,9 +30,19 @@ NSString *const getReq = @"GET";
 -(void)fetchGoogleNews:(NSString *)query
               fromDate:(NSString*)dateString
                 sortBy:(NSString*)sortBy
+                pageNo:(NSInteger)pageNo
+              pageSize:(NSInteger)pageSize
        completionBlock:(completionBlock)completionBlock {
+    
     completionHandler = completionBlock;
-    NSDictionary *paramsDictionary = @ {queryKey:query, fromKey: dateString, sortByKey:sortBy, apiKey:kgoogleNewsAPIKey};
+    NSDictionary *paramsDictionary = @ {queryKey:query,
+        fromKey: dateString,
+        sortByKey:sortBy,
+        apiKey:kgoogleNewsAPIKey,
+        pageNoKey: [NSString stringWithFormat:@"%ld",pageNo],
+        pageSizeKey:[NSString stringWithFormat:@"%ld",pageSize]
+    };
+    
     WebserverCommunicator *webserverCom = [[WebserverCommunicator alloc] init];
     [webserverCom sendAsyncRequest:getReq params:paramsDictionary
                        sucessBlock:^(BOOL sucess, NSDictionary*data){
