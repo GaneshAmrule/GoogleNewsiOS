@@ -12,8 +12,7 @@
 @interface GoogleNewsManager()
 
 @property (nonatomic, strong) NSMutableArray *articlesList;
-@property (nonatomic, assign) int topCurrentPageNo;
-@property (nonatomic, assign) int buttomCurrentPageNo;
+@property (nonatomic, assign) int currentPageNo;
 @property (nonatomic, assign) FetchDirection currentFetchDirection;
 
 @end
@@ -31,8 +30,7 @@
 
 - (GoogleNewsManager *)init {
     if (self = [super init]) {
-        self.topCurrentPageNo = 1;
-        self.buttomCurrentPageNo = 0;
+        self.currentPageNo = 1;
         self.hasNextPage = true;
         self.hasPreviousPage = false;
         self.articlesList = [[NSMutableArray alloc] init];
@@ -45,8 +43,9 @@
                   sortBy:(NSString *)sortBy
          completionBlock:(pageCompletionBlock)completionBlock {
     
-    if (self.topCurrentPageNo == 1) {
+    if (self.currentPageNo == 1) {
         self.hasPreviousPage = false;
+        return;
     }
     
     self.currentFetchDirection = FETCH_PREVIOUS;
@@ -57,7 +56,7 @@
     [googleNews fetchGoogleNews:query
                        fromDate:fromDate
                          sortBy:sortBy
-                         pageNo:(self.topCurrentPageNo - 1)
+                         pageNo:self.currentPageNo -1
                        pageSize:NEWS_PAGE_SIZE
                 completionBlock:^(NSError *error, FeedArticles *articles) {
         
@@ -71,7 +70,7 @@
             if (self.articlesList.count > NEWS_PAGE_SIZE) {
                 [self removeLastPageArticles];
             }
-            weakSelf.topCurrentPageNo -=1;
+            weakSelf.currentPageNo--;
             completionBlock(nil, self.articlesList,true);
         } else {
             completionBlock(error, nil,false);
@@ -92,7 +91,7 @@
     [googleNews fetchGoogleNews:query
                        fromDate:fromDate
                          sortBy:sortBy
-                         pageNo:(self.buttomCurrentPageNo + 1)
+                         pageNo:self.currentPageNo
                        pageSize:NEWS_PAGE_SIZE
                 completionBlock:^(NSError *error, FeedArticles *articles) {
         
@@ -104,7 +103,7 @@
             NSRange range = NSMakeRange(startIndex, articles.articles.count);
             NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
             [self.articlesList insertObjects:articles.articles atIndexes:indexSet];
-            weakSelf.buttomCurrentPageNo += 1;
+            weakSelf.currentPageNo++;
             
             if (self.articlesList.count > NEWS_PAGE_SIZE) {
                 [self removeFirstPageArticles];
@@ -121,8 +120,7 @@
     if (self.articlesList.count > NEWS_PAGE_SIZE ) {
         NSRange range = NSMakeRange(0, NEWS_PAGE_SIZE);
         [self.articlesList removeObjectsInRange:range];
-        self.topCurrentPageNo++;
-        self.hasPreviousPage = true;
+        [self updateHasPreviousPage];
     }
 }
 
@@ -130,10 +128,13 @@
     if (self.articlesList.count > NEWS_PAGE_SIZE ) {
         NSRange range = NSMakeRange(self.articlesList.count-NEWS_PAGE_SIZE, NEWS_PAGE_SIZE);
         [self.articlesList removeObjectsInRange:range];
-        self.topCurrentPageNo--;
         self.hasNextPage = true;
+        [self updateHasPreviousPage];
     }
 }
 
+-(void)updateHasPreviousPage {
+    self.currentPageNo == 1 ? (self.hasPreviousPage = false) : (self.hasPreviousPage = true);
+}
 
 @end

@@ -70,15 +70,23 @@
     int height = scrollView.frame.size.height;
     int contentYOffset = scrollView.contentOffset.y;
     float distanceFromBottom = scrollView.contentSize.height - contentYOffset;
-
+    
     if (contentYOffset <= 0) {
         NSLog(@"You reached top of the table");
-        [self fetchPreviousNews];
+        if ([[GoogleNewsManager sharedInstance] hasPreviousPage]) {
+            [self fetchPreviousNews];
+        }
     }
-     if (distanceFromBottom < height) {
-         NSLog(@"You reached end of the table");
-         [self fetchNextNews];
-     }
+    if (distanceFromBottom < height) {
+        NSLog(@"You reached end of the table");
+        if ([[GoogleNewsManager sharedInstance] hasNextPage]) {
+            [self fetchNextNews];
+        }
+    }
+}
+
+-(void)refreshTableview {
+    [self.tableView reloadData];
 }
 
 -(void)fetchNextNews {
@@ -90,7 +98,7 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             if (error ==nil & articles!= nil & articles.count > 0) {
                 self.feedArticles = articles;
-                [self.tableView reloadData];
+                [self refreshTableview];
             } else {
                 [Utility displayError:error onVC:self];
             }
@@ -107,7 +115,7 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             if (error ==nil & articles!= nil & articles.count > 0) {
                 self.feedArticles = articles;
-                [self.tableView reloadData];
+                [self refreshTableview];
             } else {
                 [Utility displayError:error onVC:self];
             }
