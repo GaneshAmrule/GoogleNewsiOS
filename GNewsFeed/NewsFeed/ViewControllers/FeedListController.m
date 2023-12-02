@@ -13,6 +13,11 @@
 #import "Utility.h"
 
 @interface FeedListController ()
+{
+    UIActivityIndicatorView *activityIndicator;
+}
+
+@property (assign, nonatomic) BOOL isFeedFetching;
 
 @end
 
@@ -23,6 +28,7 @@
     self.navigationItem.hidesBackButton = true;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
+    self.isFeedFetching = false;
 }
 
 -(void)displayFeedDetails:(FeedData*)feedData {
@@ -91,11 +97,13 @@
 
 -(void)fetchNextNews {
     GoogleNewsManager *newsManager = [GoogleNewsManager sharedInstance];
+    [self showProgressCell:false];
     [newsManager fetchNextNewsPage:@"market"
                           fromDate:@"23-11-1"
                             sortBy:@"popularity"
                    completionBlock:^(NSError *error, NSArray *articles, BOOL refresh){
         dispatch_sync(dispatch_get_main_queue(), ^{
+            [self hideProgressCell];
             if (error ==nil & articles!= nil & articles.count > 0) {
                 self.feedArticles = articles;
                 [self refreshTableview];
@@ -107,12 +115,14 @@
 }
 
 -(void)fetchPreviousNews {
+    [self showProgressCell:true];
     GoogleNewsManager *newsManager = [GoogleNewsManager sharedInstance];
     [newsManager fetchPrevNewsPage:@"market"
                           fromDate:@"23-11-1"
                             sortBy:@"popularity"
                    completionBlock:^(NSError *error, NSArray *articles, BOOL refresh){
         dispatch_sync(dispatch_get_main_queue(), ^{
+            [self hideProgressCell];
             if (error ==nil & articles!= nil & articles.count > 0) {
                 self.feedArticles = articles;
                 [self refreshTableview];
@@ -121,6 +131,33 @@
             }
         });
     }];
+}
+
+-(void)showProgressCell: (BOOL)bTop {
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleLarge];
+    [activityIndicator startAnimating];
+    activityIndicator.frame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, 100);
+    if (bTop) {
+        self.tableView.tableHeaderView = activityIndicator;
+        self.tableView.tableHeaderView.hidden = false;
+    } else {
+        self.tableView.tableFooterView = activityIndicator;
+        self.tableView.tableFooterView.hidden = false;
+    }
+}
+
+-(void)hideProgressCell {
+    
+    if (activityIndicator!=nil) {
+        [activityIndicator stopAnimating];
+        [activityIndicator removeFromSuperview];
+        activityIndicator = nil;
+    }
+    //Hide footer veiw
+    self.tableView.tableFooterView.hidden = true;
+    //Hide header view
+    self.tableView.tableHeaderView = nil;
 }
 
 @end

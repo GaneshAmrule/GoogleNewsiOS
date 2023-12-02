@@ -32,12 +32,14 @@
 -(void)loadNewsData {
     self.newsContents.text = self.feedData.content;
     
-    ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
-    __weak FeedDetailsViewController *weakSelf = self;
+    if (self.feedData.urlToImage != nil) {
+        ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
+        __weak FeedDetailsViewController *weakSelf = self;
 
-    [imageDownloader downloadImage:self.feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
-        weakSelf.newsImage.image = [UIImage imageWithData:imageData];
-    }];
+        [imageDownloader downloadImage:self.feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
+            weakSelf.newsImage.image = [UIImage imageWithData:imageData];
+        }];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

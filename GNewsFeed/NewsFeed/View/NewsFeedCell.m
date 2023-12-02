@@ -31,12 +31,14 @@
     self.feedTitle.text = feedData.title;
     self.feedDescription.text = feedData.feedDescription;
     self.feedDate.text = feedData.publishedAt;
-    ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
-    __weak NewsFeedCell *weakSelf = self;
 
-    [imageDownloader downloadImage:feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
-        weakSelf.feedImage.image = [UIImage imageWithData:imageData];
-    }];
+    if (feedData.urlToImage != nil) {
+        ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
+        __weak NewsFeedCell *weakSelf = self;
+        [imageDownloader downloadImage:feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
+            weakSelf.feedImage.image = [UIImage imageWithData:imageData];
+        }];
+    }
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
