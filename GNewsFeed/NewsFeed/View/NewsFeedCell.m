@@ -27,17 +27,23 @@
 }
 
 -(void)initWithFeedData:(FeedData*)feedData {
-    self.feedData = feedData;
-    self.feedTitle.text = feedData.title;
-    self.feedDescription.text = feedData.feedDescription;
-    self.feedDate.text = feedData.publishedAt;
+    @try {
+        self.feedData = feedData;
+        self.feedTitle.text = feedData.title;
+        self.feedDescription.text = feedData.feedDescription;
+        self.feedDate.text = feedData.publishedAt;
 
-    if (feedData.urlToImage != nil) {
-        ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
-        __weak NewsFeedCell *weakSelf = self;
-        [imageDownloader downloadImage:feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
-            weakSelf.feedImage.image = [UIImage imageWithData:imageData];
-        }];
+        if (feedData.urlToImage != nil) {
+            ImageDownloader *imageDownloader = [[ImageDownloader alloc] init];
+            __weak NewsFeedCell *weakSelf = self;
+            [imageDownloader downloadImage:feedData.urlToImage imageDownloadBlock:^(NSData *imageData){
+                if (imageData != nil){
+                    weakSelf.feedImage.image = [UIImage imageWithData:imageData];
+                }
+            }];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Failed to updated feed data");
     }
 }
 

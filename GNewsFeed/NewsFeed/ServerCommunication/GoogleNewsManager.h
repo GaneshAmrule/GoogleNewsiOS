@@ -8,13 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "FetchGoogleNews.h"
 
-typedef enum FetchDirectionType {
-    FETCH_NEXT,
-    FETCH_PREVIOUS
-}FetchDirection;
-
 typedef void (^ pageCompletionBlock)(NSError*, NSArray*, BOOL);
-
 
 @interface GoogleNewsManager : NSObject
 

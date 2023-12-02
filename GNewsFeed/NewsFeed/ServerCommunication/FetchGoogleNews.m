@@ -10,6 +10,7 @@
 #import "FeedArticles.h"
 #import "FeedData.h"
 #import "FeedSource.h"
+#import "NSDictionary+SafeObject.h"
 
 #define kgoogleNewsAPIKey @"cf0d7577c11e4efab8d36d4ecdcc30ae"
 NSString *const queryKey = @"q";
@@ -58,7 +59,7 @@ NSString *const pageSizeKey = @"pageSize";
 
 -(FeedArticles*)parseJson:(NSDictionary *)jsonDictionary {
     NSMutableArray *articleList = [[NSMutableArray alloc] init];
-    NSArray *articlesDict = [jsonDictionary valueForKey:@"articles"];
+    NSArray *articlesDict = [jsonDictionary safeObjectForKey:@"articles"];
     if (articlesDict == nil) {
         FeedError *error = [self parseFeedError:jsonDictionary];
         completionHandler(error, nil);
@@ -66,19 +67,19 @@ NSString *const pageSizeKey = @"pageSize";
     }
     for (NSDictionary *article in articlesDict) {
         FeedSource *feedSource = [[FeedSource alloc] init];
-        NSDictionary *feedSourceDict = [article valueForKey:@"source"];
-        feedSource.feedId = [feedSourceDict valueForKey:@"id"];
-        feedSource.name = [feedSourceDict valueForKey:@"name"];
+        NSDictionary *feedSourceDict = [article safeObjectForKey:@"source"];
+        feedSource.feedId = [feedSourceDict safeObjectForKey:@"id"];
+        feedSource.name = [feedSourceDict safeObjectForKey:@"name"];
         
         FeedData *feedData = [[FeedData alloc] init];
         feedData.source = feedSource;
-        feedData.author = [article valueForKey:@"author"];
-        feedData.title = [article valueForKey:@"title"];
-        feedData.feedDescription = [article valueForKey:@"description"];
-        feedData.url = [article valueForKey:@"url"];
-        feedData.urlToImage = [article valueForKey:@"urlToImage"];
-        feedData.publishedAt = [article valueForKey:@"publishedAt"];
-        feedData.content = [article valueForKey:@"content"];
+        feedData.author = [article safeObjectForKey:@"author"];
+        feedData.title = [article safeObjectForKey:@"title"];
+        feedData.feedDescription = [article safeObjectForKey:@"description"];
+        feedData.url = [article safeObjectForKey:@"url"];
+        feedData.urlToImage = [article safeObjectForKey:@"urlToImage"];
+        feedData.publishedAt = [article safeObjectForKey:@"publishedAt"];
+        feedData.content = [article safeObjectForKey:@"content"];
         [articleList addObject:feedData];
     }
     FeedArticles *feedArticles = [[FeedArticles alloc] init];
@@ -88,9 +89,9 @@ NSString *const pageSizeKey = @"pageSize";
 
 -(FeedError*)parseFeedError:(NSDictionary *)errorDictionary {
     FeedError *feedError = [[FeedError alloc] init];
-    feedError.feedErrorCode = [errorDictionary valueForKey:@"code"];
-    feedError.message = [errorDictionary valueForKey:@"message"];
-    feedError.status = [errorDictionary valueForKey:@"status"];
+    feedError.feedErrorCode = [errorDictionary safeObjectForKey:@"code"];
+    feedError.message = [errorDictionary safeObjectForKey:@"message"];
+    feedError.status = [errorDictionary safeObjectForKey:@"status"];
     return feedError;
 }
 

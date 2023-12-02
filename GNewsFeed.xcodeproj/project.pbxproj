@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0E235E2B1B348E004D8320 /* NSDictionary+SafeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E235D2B1B348E004D8320 /* NSDictionary+SafeObject.m */; };
 		6F3425FA2B18CE43000AACCE /* GoogleNewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3425F92B18CE43000AACCE /* GoogleNewsManager.m */; };
 		6F3425FE2B190FC5000AACCE /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3425FD2B190FC5000AACCE /* Utility.m */; };
 		6F3A89392B1604A30051ED5E /* WebserverCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3A89382B1604A30051ED5E /* WebserverCommunicator.m */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F0E235C2B1B348E004D8320 /* NSDictionary+SafeObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SafeObject.h"; sourceTree = "<group>"; };
+		6F0E235D2B1B348E004D8320 /* NSDictionary+SafeObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SafeObject.m"; sourceTree = "<group>"; };
 		6F3425F82B18CE43000AACCE /* GoogleNewsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleNewsManager.h; sourceTree = "<group>"; };
 		6F3425F92B18CE43000AACCE /* GoogleNewsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoogleNewsManager.m; sourceTree = "<group>"; };
 		6F3425FC2B190FC5000AACCE /* Utility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
@@ -83,6 +86,8 @@
 			children = (
 				6F3425FC2B190FC5000AACCE /* Utility.h */,
 				6F3425FD2B190FC5000AACCE /* Utility.m */,
+				6F0E235C2B1B348E004D8320 /* NSDictionary+SafeObject.h */,
+				6F0E235D2B1B348E004D8320 /* NSDictionary+SafeObject.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				6F3425FE2B190FC5000AACCE /* Utility.m in Sources */,
 				6F3A89422B1626520051ED5E /* FeedData.m in Sources */,
 				6F43D92A2B15905500049BAC /* FeedListController.m in Sources */,
+				6F0E235E2B1B348E004D8320 /* NSDictionary+SafeObject.m in Sources */,
 				6FB222A72B15C68300C8BB37 /* NewsFeedCell.m in Sources */,
 				6F3A893C2B160FA80051ED5E /* FetchGoogleNews.m in Sources */,
 				6F43D9112B158FF900049BAC /* AppDelegate.m in Sources */,
