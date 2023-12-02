@@ -62,13 +62,13 @@
                 if (articles.articles.count < NEWS_PAGE_SIZE) {
                     weakSelf.hasPreviousPage = false;
                 }
+                weakSelf.currentPageNo--;
                 NSRange range = NSMakeRange(0, [articles.articles count]);
                 NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
                 [self.articlesList insertObjects:articles.articles atIndexes:indexSet];
                 if (self.articlesList.count > NEWS_PAGE_SIZE) {
                     [self removeLastPageArticles];
                 }
-                weakSelf.currentPageNo--;
                 completionBlock(nil, self.articlesList,true);
             } else {
                 completionBlock(error, nil,false);
